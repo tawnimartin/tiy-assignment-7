@@ -50,8 +50,8 @@ function isVowel(char){
   vowels = "AEIOU".split("");
   //loop through each element in the array and
   var newvowels = vowels.filter(function(item) {
-    //perform this test - check if item in the array is the same as the provided char
-    return item === char.toUpperCase();
+    //perform this test - check if item in the array is the same as the provided char. toUpperCase to account for both lower and uppercase input.
+    return item === char.toUpperCase();//if true, item will be added to the resulting array and ultimately returned, if false, it will not.
     });
     return !!(newvowels.length);//the array that is returned will either have 1 element(true), or none(false - or falsey as I have learned). 
     //!! coerces it to boolean. If it was falsey, it will convert it to false.
@@ -63,7 +63,7 @@ function isVowel(char){
 
 function sum(numsToSum){
 
-  //use reduce method on array provided to cycle through the elements
+  //use reduce method on array provided to cycle through the elements and result in one thing
   var summedNums = numsToSum.reduce(function(result, num) {
     return result += num;//and add to memo (or result) the sum of the nums
   });
@@ -73,7 +73,7 @@ function sum(numsToSum){
 
 function multiply(numsToMultiply){
 
-  //use reduce function on array provided to cycle through the elements
+  //use reduce function on array provided to cycle through the elements and result in one thing
   var multipliedNums = numsToMultiply.reduce(function(result, num) {
     return result *= num;//and multiply nums and add to memo
   });
@@ -86,13 +86,13 @@ function multiply(numsToMultiply){
 
 function reverse(strToReverse){
 
-//create new array
+//create new array for output
 var newArray = [];
-//split provided array and put in variable
+//split provided array and put in new array for looping
 var newStrArray = strToReverse.split("");
   //loop through, for each element in the array (or letter)..
   newStrArray.forEach(function(item, indexNum){
-    //put into new array. Unshift will add new items to the beginning of the array, putting the letters in reverse order.
+    //put into new empty array. Unshift will add new items to the beginning of the array, putting the letters in reverse order.
     newArray.unshift(item);
   });
   arr2 = newArray.join("");//join result
@@ -100,7 +100,7 @@ var newStrArray = strToReverse.split("");
   return arr2;
 
 }
-//or you can also use reverse() method on array.
+//or you can use reverse() method on array.
 
 
 // ---------------------
@@ -111,11 +111,11 @@ function findLongestWord(words){
 
 //set maxLength to 0 before the looping starts
 var maxLength = 0;
-//forEach performed on array provided to loop
+//take our array of words and cycle through
  words.forEach(function(item) {
-    //Check if the element's length is greater than the maxLength
+    //For each element or value, in this case the word, check if it's length is greater than the maxLength
     if (item.length > maxLength) {
-        //if so, change maxLength to the the length of this current element
+        //if so, change maxLength to the the length of this current word
         maxLength = item.length;
     }
      //else, maxlength will not be changed.   
@@ -152,9 +152,9 @@ function charFreq(string){
   var objectFL = {};
   //set count to 1
   var count = 1;
-  //loop through array and for each..
+  //loop through array and for each letter..
   strArray.forEach(function(item) {
-    //and check: if the object we created has the letter already..
+    //check: if the object we created has the letter already..
     if (objectFL[item]) {
       //increment the value of that letter
       objectFL[item]++;

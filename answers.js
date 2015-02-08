@@ -1,21 +1,21 @@
 
 //Question 1
 //----------------
-//get prices
 
+//this cycles through the objects and for each one it grabs the value of price. It returns an array of all the prices.
 var prices = items.map(function(currentItem){
 
   return currentItem.price;
 
 });
-//take that result and reduce to sum
+//take that result set and reduce it to one thing...
 var sum = prices.reduce(function(memo, currentItem){
 
-  return memo += currentItem;
+  return memo += currentItem; //..sum
 
 }, 0);//memo starts as already having the first element in the array, instead we want it to start at 0
 
-console.log("\nQUESTION 1:\n\nThe average price is: $" + (sum / prices.length).toFixed(2)); //and average, using length of prices as total number of prices.
+console.log("\nQUESTION 1:\n\nThe average price is: $" + (sum / prices.length).toFixed(2)); //and average, using length of prices array as total number of prices. toFixed(2) keeps it at 2 decimal points.
 
 
 
@@ -34,7 +34,7 @@ var titles = inRange.map(function(currentItem){
   return "title: " + currentItem.title + "\n";
 
 });
-//joined titles to get rid of the commas
+//join titles to get rid of the commas
 console.log("\nQUESTION 2:\n\nItems that cost between $14.00 USD and $18.00 USD:\n\n " + titles.join(" "))
 
 
@@ -88,14 +88,14 @@ var hasWoodCheck = function(allMaterials) {//grabs the array that has all the ma
 //the procedure starts here, by filtering out materials
 var getMaterials = items.filter(function(currentItem) {
 
-  //return currentItem.materials is what you would do to get all the objects with materials, wood or not
+  //return currentItem.materials is what you would do to get all the objects with materials, of all kinds
   //instead of that, put it in variable for use in checking for wood
 
   var allMaterials = currentItem.materials//we'll call it allMaterials
 
-  var woodMaterials = hasWoodCheck(allMaterials) //hasWoodCheck checks allMaterials for wood assigning true if so & filter function will grab elements that meet true
+  var woodMaterials = hasWoodCheck(allMaterials) //hasWoodCheck checks allMaterials for wood assigning true if so, & filter function will grab elements that meet true
   //that then goes into woodMaterials
-  return woodMaterials//so this function returns filtered set of materials that contain wood
+  return woodMaterials//so this function returns filtered set of objects with materials that contain wood
 
 });
 
@@ -105,7 +105,7 @@ var getTitles = getMaterials.map(function(currentItem) {
   return currentItem.title + " is made of wood. " + "\n";
 
 });
-//and print them out
+//and print them out, join to remove commas
 console.log("\nQUESTION 4:\n\n " + getTitles.join(" "))
 
 
@@ -121,36 +121,37 @@ var hasEight = function(allMaterials) {
 
   var eighttrueorfalse = false;//set to false
 
-  allMaterials.forEach(function(currentItem) {//cycles through all materials to check for length
+  allMaterials.forEach(function(currentItem) {//cycles through all materials
           
-    if(allMaterials.length >= 8) {//this time, we check for the length of the array, give it true if it's greater than or equal to 8
+    if(allMaterials.length >= 8) {//this time, we check for the length of the materials array, give it true if it's greater than or equal to 8
       eighttrueorfalse = true;
     }
 
   }); 
 
-  return eighttrueorfalse
+  return eighttrueorfalse//returns true or false
 }
 
+//the procedure starts here, by filtering out materials
 var getMaterialsforeight = items.filter(function(currentItem) {
 
   //put all materials in a variable for checking
   var allMaterialsforeight = currentItem.materials
-  //run through hasEight function, will return true for those with 8 or up
+  //runs through hasEight function, will return true for those with 8 or up
   var eightMaterials = hasEight(allMaterialsforeight) 
   //and return our filtered result into eightMaterials
   return eightMaterials
 
 });
 
-//get titles from our filtered materials
+//get titles from our result set of objects with the correct amount of materials
 var getTitlesforeight = getMaterialsforeight.map(function(currentItem) {
 
   return currentItem.title + " has 9 materials: " + "\n\n";
 
 });
 
-//From this same filtered set, get the array of materials
+//From this same set, get the arrays of materials
 var materialsListforeight = getMaterialsforeight.map(function(currentItem) {
 
   return currentItem.materials;//and return
